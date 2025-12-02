@@ -19,16 +19,17 @@ public class Car {
     private boolean isAvailable;
 
     // Constructor
-    public Car(UUI  id, String regNumber, BigDecimal price, Brand brand, boolean isElectric) {
+    public Car(UUID id, String regNumber, BigDecimal price, Brand brand, boolean isElectric, boolean isAvailable) {
         this.id = id;
         this.regNumber = regNumber;
         this.price = price;
         this.brand = brand;
         this.isElectric = isElectric;
+        // The availability is now correctly set from the constructor parameter
         this.isAvailable = isAvailable;
     }
 
-    // Geetters
+    // Getters
     public UUID getId() {
         return id;
     }
@@ -59,27 +60,27 @@ public class Car {
     }
 
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Car{" +
                 "id=" + id +
                 ", regNumber='" + regNumber + '\'' +
                 ", price=" + price +
                 ", brand=" + brand +
                 ", isElectric=" + isElectric +
-                ", isAvailable=" + isAvailable +
+                ", isAvailable=" + isAvailable + // Added for completeness
                 '}';
     }
 
     @Override
     public boolean equals(Object object) {
+        if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        if (!super.equals(object)) return false;
         Car car = (Car) object;
-        return isElectric == car.isElectric && isAvailable == car.isAvailable && java.util.Objects.equals(id, car.id) && java.util.Objects.equals(regNumber, car.regNumber) && java.util.Objects.equals(price, car.price) && java.util.Objects.equals(brand, car.brand);
+        return isElectric == car.isElectric && isAvailable == car.isAvailable && Objects.equals(id, car.id) && Objects.equals(regNumber, car.regNumber) && Objects.equals(price, car.price) && brand == car.brand;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, regNumber, price, brand, isElectric, isAvailable);
+        return Objects.hash(id, regNumber, price, brand, isElectric, isAvailable);
     }
 }
