@@ -1,6 +1,6 @@
 package com.user;
 
-imoprt java.util.UUID;
+import java.util.UUID;
 
 public class User {
     private final String id;
