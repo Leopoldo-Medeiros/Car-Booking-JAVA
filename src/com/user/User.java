@@ -1,6 +1,6 @@
 package com.user;
 
-imoprt java.util.UUID;
+import java.util.UUID;
 
 public class User {
     private final String id;
@@ -24,11 +24,14 @@ public class User {
         return name;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        User user = (User) object;
+        return java.util.Objects.equals(id, user.id) && java.util.Objects.equals(name, user.name);
+    }
+
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id, name);
     }
 }
